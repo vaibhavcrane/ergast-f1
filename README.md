@@ -20,7 +20,7 @@ ergast.seasons.filter({
     result: 1
 })
 
-gives response from <https://ergast.com/api/f1/drivers/hamilton/results/1.json>
+gives response from <https://ergast.com/api/f1/drivers/hamilton/results/1/seasons.json>
 
 # Filters list
 
