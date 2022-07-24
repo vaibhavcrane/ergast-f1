@@ -1,6 +1,6 @@
 {
   "name": "ergast-f1",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Module to access Ergast API data",
   "main": "index.js",
   "scripts": {
