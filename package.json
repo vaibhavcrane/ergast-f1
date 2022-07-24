@@ -1,0 +1,19 @@
+{
+  "name": "ergast-f1",
+  "version": "0.1.0",
+  "description": "Module to access Ergast API data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaibhavcrane/ergast-f1.git"
+  },
+  "author": "Vaibhav Rane <vaibhavcrane@me.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaibhavcrane/ergast-f1/issues"
+  },
+  "homepage": "https://github.com/vaibhavcrane/ergast-f1#readme"
+}
