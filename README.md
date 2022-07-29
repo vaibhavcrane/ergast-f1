@@ -9,7 +9,7 @@ npm i ergast-f1
 
 `.all()` returns entire list of selected function
 
-`.filters()` takes a dictionary as argument with filter type as key
+`.filters()` takes a json as argument with filter type as key
 
 ### Example
 
