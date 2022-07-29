@@ -23,31 +23,32 @@ SOFTWARE.
 
 */
 
-
-const baseUrl = "https://ergast.com/api/f1/"
-var criteria = ""
+const url = {
+    _base: "https://ergast.com/api/f1/",
+    _criteria: ""
+}
 
 /* Variables */
-function ergastParams()    {
-    const _driver = "driver"
-    const _circuit = "circuit"
-    const _constructor = "constructor"
-    const _grid = "grid"
-    const _result = "result"
-    const _fastest = "fastest"
-    const _status = "status"
-    const _year = "year"
-    const _round = "round"
-    const _standing = "standing"
-    const _lap = "lap"
-    const _pitstop = "pitstop"
+const ergastParams = {
+    _driver: "driver",
+    _circuit: "circuit",
+    _constructor: "constructor",
+    _grid: "grid",
+    _result: "result",
+    _fastest: "fastest",
+    _status: "status",
+    _year: "year",
+    _round: "round",
+    _standing: "standing",
+    _lap: "lap",
+    _pitstop: "pitstop"
 }
 
 var ergastFunctions = {
     seasons: {
         all: async function()   {
             option.seasons()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters) {
@@ -59,7 +60,7 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._fastest)) { filter.fastest(userFilters[ergastParams._fastest]) };
             if(userFilters.hasOwnProperty(ergastParams._status)) { filter.status(userFilters[ergastParams._status]) };
             option.seasons();
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -67,7 +68,7 @@ var ergastFunctions = {
     races: {
         all: async function()   {
             option.races()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters)   {
@@ -85,7 +86,7 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._fastest)) { filter.fastest(userFilters[ergastParams._fastest]) };
             if(userFilters.hasOwnProperty(ergastParams._status)) { filter.status(userFilters[ergastParams._status]) };
             option.races();
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -93,7 +94,7 @@ var ergastFunctions = {
     results: {
         all: async function()   {
             option.results()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters)    {
@@ -111,8 +112,8 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._status)) { filter.status(userFilters[ergastParams._status]) };
             if(userFilters.hasOwnProperty(ergastParams._result)) { filter.result(userFilters[ergastParams._result]) };
             option.results();
-            if(userFilters.hasOwnProperty(ergastParams._result)) { criteria = criteria.replace("/results.json", ".json") };
-            response = await getResponse(baseUrl+criteria)
+            if(userFilters.hasOwnProperty(ergastParams._result)) { url._criteria = url._criteria.replace("/results.json", ".json") };
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -120,7 +121,7 @@ var ergastFunctions = {
     qualifying: {
         all: async function()   {
             option.qualifying()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters)    {
@@ -140,9 +141,9 @@ var ergastFunctions = {
             option.qualifying();
             if(userFilters.hasOwnProperty(ergastParams._standing)) {
                 filter.qualifying(userFilters[ergastParams._standing])
-                criteria = criteria.replace("/qualifying.json","/")
+                url._criteria = url._criteria.replace("/qualifying.json","/")
             }
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -158,7 +159,7 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._driver)) { filter.driver(userFilters[ergastParams._driver]) };
             option.driverStandings();
             if(userFilters.hasOwnProperty(ergastParams._standing)) { filter.standing(userFilters[ergastParams._standing]) };
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         constructors: async function(userFilters)    {
@@ -171,7 +172,7 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._constructor)) { filter.driver(userFilters[ergastParams._constructor]) };
             option.constructorStadings();
             if(userFilters.hasOwnProperty(ergastParams._standing)) { filter.standing(userFilters[ergastParams._standing]) };
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -179,7 +180,7 @@ var ergastFunctions = {
     drivers: {
         all: async function()   {
             option.drivers()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters)    {
@@ -198,8 +199,8 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._standing)) { filter.driverStanding(userFilters[ergastParams._standing]) };
             if(userFilters.hasOwnProperty(ergastParams._driver)) { filter.driver(userFilters[ergastParams._driver]) };
             option.drivers();
-            if(userFilters.hasOwnProperty(ergastParams._driver)) { criteria = criteria.replace("/drivers.json", ".json") };
-            response = await getResponse(baseUrl+criteria)
+            if(userFilters.hasOwnProperty(ergastParams._driver)) { url._criteria = url._criteria.replace("/drivers.json", ".json") };
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -207,7 +208,7 @@ var ergastFunctions = {
     constructors: {
         all: async function()   {
             option.constructors()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters)    {
@@ -226,8 +227,8 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._standing)) { filter.driverStanding(userFilters[ergastParams._standing]) };
             if(userFilters.hasOwnProperty(ergastParams._constructor)) { filter.constructor(userFilters[ergastParams._constructor]) };
             option.constructors();
-            if(userFilters.hasOwnProperty(ergastParams._constructor)) { criteria = criteria.replace("/constructors.json", ".json") };
-            response = await getResponse(baseUrl+criteria)
+            if(userFilters.hasOwnProperty(ergastParams._constructor)) { url._criteria = url._criteria.replace("/constructors.json", ".json") };
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -235,7 +236,7 @@ var ergastFunctions = {
     circuits: {
         all: async function()   {
             option.circuits()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters)    {
@@ -253,8 +254,8 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._status)) { filter.status(userFilters[ergastParams._status]) };
             if(userFilters.hasOwnProperty(ergastParams._circuit)) { filter.circuit(userFilters[ergastParams._circuit]) };
             option.constructors();
-            if(userFilters.hasOwnProperty(ergastParams._circuit)) { criteria = criteria.replace("/circuits.json", ".json") };
-            response = await getResponse(baseUrl+criteria)
+            if(userFilters.hasOwnProperty(ergastParams._circuit)) { url._criteria = url._criteria.replace("/circuits.json", ".json") };
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -262,7 +263,7 @@ var ergastFunctions = {
     status: {
         all: async function()   {
             option.status()
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         },
         filters: async function(userFilters)    {
@@ -280,8 +281,8 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._fastest)) { filter.fastest(userFilters[ergastParams._fastest]) };
             if(userFilters.hasOwnProperty(ergastParams._status)) { filter.status(userFilters[ergastParams._status]) };
             option.status();
-            if(userFilters.hasOwnProperty(ergastParams._status)) { criteria = criteria.replace("/status.json", ".json") };
-            response = await getResponse(baseUrl+criteria)
+            if(userFilters.hasOwnProperty(ergastParams._status)) { url._criteria = url._criteria.replace("/status.json", ".json") };
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -292,7 +293,7 @@ var ergastFunctions = {
             filter.round(userFilters[ergastParams._round])
             if(userFilters.hasOwnProperty(ergastParams._driver)) { filter.driver(userFilters[ergastParams._driver]) };
             option.lap(userFilters[ergastParams._lap]);
-            response = await getResponse(baseUrl+criteria)
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     },
@@ -304,8 +305,8 @@ var ergastFunctions = {
             if(userFilters.hasOwnProperty(ergastParams._driver)) { filter.driver(userFilters[ergastParams._driver]) };
             if(userFilters.hasOwnProperty(ergastParams._lap)) { filter.lap(userFilters[ergastParams._lap]) };
             option.pitStops();
-            if(userFilters.hasOwnProperty(ergastParams._pitstop)) { criteria = criteria.replace("/pitstops.json", filter.pitStop(userFilters[ergastParams._pitstop])) };
-            response = await getResponse(baseUrl+criteria)
+            if(userFilters.hasOwnProperty(ergastParams._pitstop)) { url._criteria = url._criteria.replace("/pitstops.json", filter.pitStop(userFilters[ergastParams._pitstop])) };
+            response = await getResponse(url._base+url._criteria)
             return response
         }
     }
@@ -330,38 +331,38 @@ async function getResponse(url)   {
 
 /* Adds the option selected to API URL. */
 var option = {
-    seasons: function() { criteria+="seasons.json" },
-    races: function() { criteria+="races.json" },
-    drivers: function() { criteria+="drivers.json" },
-    constructors: function() { criteria+="constructors.json" },
-    circuits: function() { criteria+="circuits.json" },
-    results: function() { criteria+="results.json" },
-    qualifying: function() { criteria+="qualifying.json" },
-    status: function() { criteria+="status.json" },
-    sprint: function() { criteria+="sprint.json" },
-    driverStandings: function() { criteria+="driverStandings.json" },
-    constructorStadings: function() { criteria+="constructorStandings.json" },
-    pitStops: function() { criteria+="pitstops.json" },
-    lap: function(id) { criteria += `laps/${id}.json` }
+    seasons: function() { url._criteria+="seasons.json" },
+    races: function() { url._criteria+="races.json" },
+    drivers: function() { url._criteria+="drivers.json" },
+    constructors: function() { url._criteria+="constructors.json" },
+    circuits: function() { url._criteria+="circuits.json" },
+    results: function() { url._criteria+="results.json" },
+    qualifying: function() { url._criteria+="qualifying.json" },
+    status: function() { url._criteria+="status.json" },
+    sprint: function() { url._criteria+="sprint.json" },
+    driverStandings: function() { url._criteria+="driverStandings.json" },
+    constructorStadings: function() { url._criteria+="constructorStandings.json" },
+    pitStops: function() { url._criteria+="pitstops.json" },
+    lap: function(id) { url._criteria += `laps/${id}.json` }
 }
 
 /* Adds the filter selected to API URL */
 var filter = {
-    circuit: function(id) { criteria += `circuits/${id}/` },
-    constructor: function(id) { criteria += `constructors/${id}/` },
-    driver: function(id) { criteria += `drivers/${id}/` },
-    grid: function(id) { criteria += `grid/${id}/` },
-    result: function(id) { criteria += `results/${id}/` },
-    fastest: function(id) { criteria += `fastest/${id}/` },
-    status: function(id) { criteria += `status/${id}/` },
-    year: function(id) { criteria += `${id}/` },
-    round: function(id) { criteria += `${id}/` },
-    lap: function(id) { criteria += `laps/${id}/` },
+    circuit: function(id) { url._criteria += `circuits/${id}/` },
+    constructor: function(id) { url._criteria += `constructors/${id}/` },
+    driver: function(id) { url._criteria += `drivers/${id}/` },
+    grid: function(id) { url._criteria += `grid/${id}/` },
+    result: function(id) { url._criteria += `results/${id}/` },
+    fastest: function(id) { url._criteria += `fastest/${id}/` },
+    status: function(id) { url._criteria += `status/${id}/` },
+    year: function(id) { url._criteria += `${id}/` },
+    round: function(id) { url._criteria += `${id}/` },
+    lap: function(id) { url._criteria += `laps/${id}/` },
     pitStop: function(id) { return `/pitstops/${id}.json` },
-    standing: function(id) { criteria = criteria.replace(".json", `/${id}.json`) },
-    driverStanding: function(id) { criteria += `driverStandings/${id}/` },
-    constructorStanding: function(id) { criteria += `constructorStandings/${id}/` },
-    qualifying: function(id) { criteria += `qualifying/${id}.json` },
+    standing: function(id) { url._criteria = url._criteria.replace(".json", `/${id}.json`) },
+    driverStanding: function(id) { url._criteria += `driverStandings/${id}/` },
+    constructorStanding: function(id) { url._criteria += `constructorStandings/${id}/` },
+    qualifying: function(id) { url._criteria += `qualifying/${id}.json` },
 }
 
 module.exports = ergastFunctions
