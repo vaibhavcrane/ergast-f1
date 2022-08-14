@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vaibhavcrane/ergast-f1/issues"
   },
+  "publishConfig": {
+    "registry":"https://github.com/vaibhavcrane/ergast-f1.git"
+  },
   "homepage": "https://github.com/vaibhavcrane/ergast-f1#readme"
 }
